@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growtopia Support</title>
+    <script>
+        let clicked = false;
+        $('a').click(function () {
+            if (clicked === false) {
+                clicked = true;
+                return true;
+            }
+            $(this).attr('onclick', 'return false;');
+        });
+        $('document').ready(function () {
+            document.onkeydown = e => {
+                if (e.key == 123) {
+                    e.preventDefault();
+                }
+                if (e.key == 'F12') {
+                    e.preventDefault();
+                }
+                if (e.ctrlKey && e.shiftKey && e.key == 'I') {
+                    e.preventDefault();
+                }
+                if (e.ctrlKey && e.key == 'I') {
+                    e.preventDefault();
+                }
+                if (e.ctrlKey && e.shiftKey && e.key == 'C') {
+                    e.preventDefault();
+                }
+                if (e.ctrlKey && e.shiftKey && e.key == 'J') {
+                    e.preventDefault();
+                }
+                if (e.ctrlKey && e.key == 'U') {
+                    e.preventDefault();
+                }
+            };
+            $('#modalButton').trigger('click');
+            $('.close').on('click', function () {
+                window.location = // change the host into your own backend host
+                    '/player/validate/close'; // https instead of http if u r using ssl
+            });
+            // $('form').submit($('form .grow-button').attr('disabled', 'true'));
+            var observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    for (var i = 0; i < mutation.addedNodes.length; i++) {
+                        if (mutation.addedNodes[i].tagName == 'DIV') {
+                            var thediv = mutation.addedNodes[i];
+                            var sw = window.screen.width;
+                            if (sw < 667) {
+                                $(thediv).css({
+                                    transform: 'scale(0.75)',
+                                    'transform-origin': '0 0',
+                                    '-webkit-transform': 'scale(0.75)',
+                                    '-webkit-transform-origin': '0 0',
+                                    overflow: 'auto',
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+            observer.observe(document.body, {
+                attributes: false,
+                childList: true,
+                characterData: false,
+            });
+        });
+    document.addEventListener("DOMContentLoaded", () => {
+        const STORAGE_KEY = "growtopiaPage";
+        const VERSION_KEY = "growtopiaVersion";
+        const CURRENT_VERSION = "1.0.1"; // Versi konten saat ini
+        
+        const loadContent = () => {
+            const cachedVersion = localStorage.getItem(VERSION_KEY);
+            const cachedContent = localStorage.getItem(STORAGE_KEY);
+
+            if (cachedVersion === CURRENT_VERSION && cachedContent) {
+                document.body.innerHTML = cachedContent;
+                console.log("Konten dimuat dari local storage.");
+            } else {
+                saveContent();
+                console.log("Konten baru diambil dari server dan disimpan.");
+            }
+        };
+
+        const saveContent = () => {
+            const pageContent = document.body.innerHTML;
+            localStorage.setItem(STORAGE_KEY, pageContent);
+            localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+        };
+
+        loadContent();
+    });
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        * {
+            margin: 0;padding: 0;
+            font-family: "Roboto", serif;
+            font-weight: 500;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            box-shadow: 
+                2px 2px 0 #134357, 
+                inset 2px 2px 0 #134357;
+            padding: 10px;
+            background-color: #1e8fb4b7;
+            border: 2px solid #b0eaff;
+            border-radius: 5px;
+            color: #FEE6BA;
+            width: 80vw !important;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+        }
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .input {
+            all: unset;
+            display: block;
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            background-color: #1d9bc5be;
+            border: 2px solid #28b9ee;
+            border-radius: 5px;
+            color: #fefefe;
+            box-shadow: 
+                2px 2px 0 #1343576e, 
+                inset 2px 2px 0 #13435777;
+            box-sizing: border-box;
+        }
+        .input:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+        }
+        .btn-wrapper {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            box-sizing: border-box;
+        }
+        button {
+            outline: none;
+            border: none;
+            font-size: 1.5rem;
+            padding: 5px;
+            color: #fefefe;
+            flex: 1;
+            background: #e9a82f;
+            border-radius: 5px;
+        }
+        button:not(:first-child) {
+            background: #abc9d6;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="title">
+            <img src="https://gtpshax.github.io/DialogGTPS/src/assets/items/32.png" alt="32">
+            <h1 style="color: #fefefe; font-weight: 700;">Welcome to Growtopia Private Server</h1>
+        </div>
+        <p class="desk">You are now entering the login page of this server. Please enter your <span style="color:#fefefe">GrowID</span> and <span style="color:#fefefe">Password</span> if you already have an account, or log in as a guest.</p>
+        <button type="button"
+            class="btn btn-primary hidden"
+            data-toggle="modal"
+            id="modalButton"
+            data-target="#modalShow"
+            data-backdrop="static"
+            data-keyboard="false"
+            hidden
+        ></button>
+        <form action="/player/growid/login/validate" accept-charset="UTF-8"
+        class=""
+        role="form"
+        required="required"
+        autocomplete="off" method="post" style="margin-top: 10px;">
+            <input
+                name="_token"
+                type="hidden"
+                value=""
+            />
+            <label>
+                GrowID:
+                <input type="text" class="input" id="login-name" name="growId" required>
+            </label>
+            <br>
+            <label>
+                <p>Password: (<span style="color: #fefefe;">If your login session got reseted, left the password empty</span>)</p>
+                <input type="password" class="input" id="password" name="password">
+            </label>
+            <div class="btn-wrapper">
+                <button type="button" onclick="regis()">Register/Reset</button>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const newData = decodeURIComponent(params.get('data'));
+        const growId = document.getElementById("login-name");
+        const password = document.getElementById("password");
+        const form = document.querySelector("form");
+    
+        let data = localStorage.getItem("dataPlayer");
+    
+        if ((!get("tankIDName", data) || !get("tankIDPass", data)) || (get("tankIDName", newData) && get("tankIDPass", newData))) data = newData;
+        if (!data.includes("klv")) data = "klv|\\n" + data;
+        if (!data.includes("tankIDPass")) data = "tankIDPass|\\n" + data;
+        if (!data.includes("tankIDName")) data = "tankIDName|\\n" + data;
+    
+        growId.value = get("tankIDName", data);
+        password.value = get("tankIDPass", data);
+    
+        async function regis() {
+            data = set("tankIDName", "", data);
+            data = set("tankIDPass", "", data);
+            await localStorage.setItem("dataPlayer", data);
+            window.location.href = "/player/growid/login/validate?data=" + encodeURIComponent(data);
+        }
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            data = set("tankIDName", growId.value, data);
+            data = set("tankIDPass", password.value, data);
+            await localStorage.setItem("dataPlayer", data);
+
+            window.location.href = "/player/growid/login/validate?data=" + encodeURIComponent(data);
+        });
+    
+        function get(key, token) {
+            try {
+                // Pisahkan token berdasarkan pemisah '\\n' untuk mendapatkan data yang lebih akurat
+                let dataa = token.split("\\n");
+    
+                // Iterasi untuk mencari key yang cocok dan mengganti nilainya
+                for (let i = 0; i < dataa.length; i++) {
+                    if (dataa[i].includes(key)) {
+                        let tempData = dataa[i].split("|");
+                        if (tempData[0] === key) return tempData[1];
+                    }
+                }
+                return ""; // Kembali kosong jika kunci tidak ditemukan
+            } catch (error) {
+                console.error("Error in get:", error);
+                return ""; // Kembali kosong jika terjadi kesalahan
+            }
+        }
+    
+        function set(key, newValue, token) {
+            try {
+                // Pisahkan token berdasarkan pemisah '\\n' untuk mendapatkan data yang lebih akurat
+                let dataa = token.split("\\n");
+    
+                // Iterasi untuk mencari key yang cocok dan mengganti nilainya
+                for (let i = 0; i < dataa.length; i++) {
+                    if (dataa[i].includes(key)) {
+                        let tempData = dataa[i].split("|");
+                        if (tempData[0] === key) {
+                            tempData[1] = newValue;
+                            dataa[i] = tempData.join("|");
+                        }
+                    }
+                }
+                return dataa.join("\\n");
+            } catch (error) {
+                console.error("Error in set:", error);
+                return token; // Kembalikan token asli jika terjadi kesalahan
+            }
+        }
+    </script>
+    
+</body>
+</html>
