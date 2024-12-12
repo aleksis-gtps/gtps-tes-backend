@@ -37,7 +37,7 @@ app.all('/player/login/dashboard', function (req, res) {
         if (uName[1] && uPass[1]) { res.redirect('/player/growid/login/validate'); }
     } catch (why) { console.log(`Warning: ${why}`); }
 
-    res.render(__dirname + '/public/index.html', { data: tData });
+    res.render(__dirname + '/public/html/dashboard.ejs', { data: tData });
 });
 
 app.all('/player/growid/login/validate', (req, res) => {
@@ -54,8 +54,9 @@ app.all('/player/growid/login/validate', (req, res) => {
     );
 });
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
+app.get('/public/index.html', function (req, res) {
+    const path = require('path');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(5000, function () {
