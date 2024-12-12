@@ -3,6 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const rateLimiter = require('express-rate-limit');
 const compression = require('compression');
+const path = require('path');
+
+// Middleware untuk file statis
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(compression({
     level: 5,
@@ -54,11 +58,12 @@ app.all('/player/growid/login/validate', (req, res) => {
     );
 });
 
-app.get('/public/index.html', function (req, res) {
-    const path = require('path');
+// Rute default untuk menyajikan index.html
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Jalankan server
 app.listen(5000, function () {
     console.log('Listening on port 5000');
 });
