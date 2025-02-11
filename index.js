@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const rateLimiter = require('express-rate-limit');
 const compression = require('compression');
+const ejs = require('ejs');
 const path = require('path');
 
 // Middleware untuk file statis
