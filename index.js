@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const rateLimiter = require('express-rate-limit');
 const compression = require('compression');
-const ejs = require('ejs');
 const path = require('path');
 
 // Middleware untuk file statis
@@ -19,7 +18,6 @@ app.use(compression({
         return compression.filter(req, res);
     }
 }));
-app.set('view engine', 'ejs');
 app.set('trust proxy', 1);
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
